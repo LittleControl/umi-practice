@@ -1,0 +1,34 @@
+.wrap {
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  justify-content: space-around;
+
+  .item {
+    border-radius: 5%;
+    background-color: rgba(71, 67, 67, 0.1);
+    height: 9vh;
+    width: 16vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .left {
+      overflow: hidden;
+      border-radius: 50%;
+      background-color: #fff;
+
+      .icon {
+        font-size: 4em;
+      }
+    }
+
+    .right {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+    }
+  }
+}

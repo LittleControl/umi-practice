@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Avatar } from 'antd';
+import { Button } from 'antd';
 import './header.less';
 import {
   BellOutlined,
