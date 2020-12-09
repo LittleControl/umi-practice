@@ -5,7 +5,8 @@ export default [
     routes: [
       {
         path: '/',
-        component: './index',
+        // component: './index',
+        redirect: '/controlcenter',
       },
       {
         path: '/controlcenter',

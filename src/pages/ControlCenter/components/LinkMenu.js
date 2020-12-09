@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Tabs } from 'antd';
 
 class LinkMenu extends Component {
@@ -9,8 +9,8 @@ class LinkMenu extends Component {
     const { TabPane } = Tabs;
 
     return (
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="控制中心" key="1"></TabPane>
+      <Tabs defaultActiveKey="1" size="large">
+        <TabPane tab="控制中心" key="1" style={{ fontSize: '2em' }}></TabPane>
       </Tabs>
     );
   }

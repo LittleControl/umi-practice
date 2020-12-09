@@ -20,12 +20,12 @@ class BasicLayout extends Component {
         <Header />
         <Layout>
           <Layout>
-            <Sider width={200} className="site-layout-background">
+            <Sider width="12vw" className="site-layout-background">
               <Menu
                 mode="inline"
                 defaultSelectedKeys={['ControlCenter']}
                 defaultOpenKeys={['sub1']}
-                style={{ height: '100%', borderRight: 0 }}
+                style={{ height: '100%' }}
               >
                 {menuItems.map(value => {
                   return (
@@ -43,9 +43,9 @@ class BasicLayout extends Component {
               </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
-              <Breadcrumb style={{ margin: '16px 0' }}>
+              {/* <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>任务中心</Breadcrumb.Item>
-              </Breadcrumb>
+              </Breadcrumb> */}
               <Content
                 className="site-layout-background"
                 style={{

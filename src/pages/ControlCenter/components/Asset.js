@@ -8,7 +8,6 @@ class Asset extends Component {
   }
   render() {
     const assets = this.props.data;
-    console.log(assets);
     return (
       <div className={styles.wrap}>
         <div className={styles.item}>
