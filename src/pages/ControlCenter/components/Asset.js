@@ -7,6 +7,8 @@ class Asset extends Component {
     super(props);
   }
   render() {
+    const assets = this.props.data;
+    console.log(assets);
     return (
       <div className={styles.wrap}>
         <div className={styles.item}>
@@ -14,7 +16,7 @@ class Asset extends Component {
             <DeleteOutlined className={styles.icon} />
           </div>
           <div className={styles.right}>
-            <span>5000</span>
+            <span>{assets.allAssets}</span>
             <span>全部资产</span>
           </div>
         </div>
@@ -23,8 +25,8 @@ class Asset extends Component {
             <DeleteOutlined className={styles.icon} />
           </div>
           <div className={styles.right}>
-            <span>5000</span>
-            <span>全部资产</span>
+            <span>{assets.switch}</span>
+            <span>交换路由设备</span>
           </div>
         </div>
         <div className={styles.item}>
@@ -32,8 +34,8 @@ class Asset extends Component {
             <DeleteOutlined className={styles.icon} />
           </div>
           <div className={styles.right}>
-            <span>5000</span>
-            <span>全部资产</span>
+            <span>{assets.industrial}</span>
+            <span>工业控制设备</span>
           </div>
         </div>
         <div className={styles.item}>
@@ -41,8 +43,17 @@ class Asset extends Component {
             <DeleteOutlined className={styles.icon} />
           </div>
           <div className={styles.right}>
-            <span>5000</span>
-            <span>全部资产</span>
+            <span>{assets.lot}</span>
+            <span>物联网设备</span>
+          </div>
+        </div>
+        <div className={styles.item}>
+          <div className={styles.left}>
+            <DeleteOutlined className={styles.icon} />
+          </div>
+          <div className={styles.right}>
+            <span>{assets.others}</span>
+            <span>其他资产</span>
           </div>
         </div>
       </div>

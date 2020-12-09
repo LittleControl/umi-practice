@@ -97,6 +97,7 @@ const columns = [
 ];
 const data = [
   {
+    key: 1,
     target: '任务目标',
     port: '端口',
     service: '服务',
@@ -110,6 +111,7 @@ const data = [
     operate: '操作',
   },
   {
+    key: 2,
     target: '172.18.0.1',
     port: '22',
     service: 'SSH',
@@ -123,6 +125,7 @@ const data = [
     operate: '详情',
   },
   {
+    key: 3,
     target: '',
     port: '80',
     service: 'HTTP',
@@ -136,6 +139,7 @@ const data = [
     operate: '详情',
   },
   {
+    key: 4,
     target: 'www.a.com',
     port: '443',
     service: 'HTTPS',
