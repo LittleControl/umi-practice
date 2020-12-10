@@ -6,6 +6,7 @@ export default {
     tags: {},
     assets: {},
     mids: {},
+    apps: [],
   },
   effects: {
     *query({ type, payload }, { put, call, select }) {
@@ -24,13 +25,14 @@ export default {
       };
 
       const response = yield call(fakeControlCenter, payload);
-      const { tags, assets, mids } = response.data;
+      const { tags, assets, mids, apps } = response.data;
       yield put({
         type: 'save',
         payload: {
           tags: tags || localTags,
           assets: assets || localAssets,
-          mids: mids,
+          mids,
+          apps,
         },
       });
     },

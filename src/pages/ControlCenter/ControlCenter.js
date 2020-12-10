@@ -25,7 +25,7 @@ class ControlCenter extends Component {
     }
   }
   render() {
-    const { tags, assets, mids } = this.props.controlcenter;
+    const { tags, assets, mids, apps } = this.props.controlcenter;
     return (
       <Fragment>
         <Space direction="vertical" style={{ width: '100%' }}>
@@ -34,7 +34,7 @@ class ControlCenter extends Component {
           <GenCard component={Asset} data={assets} />
           <GenCard component={MidCard} data={mids} />
           <GenCard component={FilterCard} />
-          <GenCard component={AppCard} />
+          <GenCard component={AppCard} data={apps} />
         </Space>
       </Fragment>
     );
