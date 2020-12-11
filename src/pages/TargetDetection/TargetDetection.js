@@ -22,13 +22,12 @@ class TargetDetection extends Component {
     }
   }
   render() {
-    const { tableData } = this.props.targetdetection;
     return (
       <Fragment>
         <Space direction="vertical" style={{ width: '100%' }}>
           <GenCard component={LinkMenu} />
           <GenCard component={FilterCard} />
-          <GenCard component={TableCard} data={tableData} />
+          <GenCard component={TableCard} />
         </Space>
       </Fragment>
     );

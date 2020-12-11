@@ -25,16 +25,15 @@ class ControlCenter extends Component {
     }
   }
   render() {
-    const { tags, assets, mids, apps } = this.props.controlcenter;
     return (
       <Fragment>
         <Space direction="vertical" style={{ width: '100%' }}>
           <GenCard component={LinkMenu} />
-          <GenCard component={Tags} data={tags} />
-          <GenCard component={Asset} data={assets} />
-          <GenCard component={MidCard} data={mids} />
+          <GenCard component={Tags} />
+          <GenCard component={Asset} />
+          <GenCard component={MidCard} />
           <GenCard component={FilterCard} />
-          <GenCard component={AppCard} data={apps} />
+          <GenCard component={AppCard} />
         </Space>
       </Fragment>
     );

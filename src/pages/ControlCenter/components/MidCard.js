@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'umi';
 import { Tabs, Table, List } from 'antd';
 import styles from './midcard.less';
 
@@ -21,20 +22,13 @@ const osColumns = [
   { title: '操作系统', dataIndex: 'os' },
   { title: '数量', dataIndex: 'ocount' },
 ];
-// const ipData = []
-// const portData = []
-// const flawData = []
-// const weakPawdData = []
-// const pocData = []
-// const expData = []
-// const vendorData = []
-// const osData = []
 
 class MidCard extends Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const { mids } = this.props.controlcenter;
     const {
       ipData,
       portData,
@@ -44,7 +38,7 @@ class MidCard extends Component {
       expData,
       vendorData,
       osData,
-    } = this.props.data;
+    } = mids;
     return (
       <div className={styles.wrap}>
         <div className={styles.item}>
@@ -160,4 +154,4 @@ class MidCard extends Component {
   }
 }
 
-export default MidCard;
+export default connect(({ controlcenter }) => ({ controlcenter }))(MidCard);

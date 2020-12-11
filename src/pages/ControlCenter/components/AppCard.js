@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Radio } from 'antd';
+import { connect } from 'umi';
+import { Table } from 'antd';
 import AppModal from './AppModal';
 import './appcard.less';
 
@@ -7,6 +8,12 @@ class AppCard extends Component {
   constructor(props) {
     super(props);
   }
+  state = {
+    selectedRowKeys: [],
+  };
+  onSelectChange = selectedRowKeys => {
+    this.setState({ selectedRowKeys });
+  };
 
   blodFontRender = (text, row, index) => {
     const obj = {
@@ -38,7 +45,7 @@ class AppCard extends Component {
       colSpan: 2,
       render: (text, row, index) => {
         const obj = {
-          children: <Radio>{text}</Radio>,
+          children: text,
           props: [],
         };
         if (index === 1 || index === 4 || index === 6) {
@@ -48,7 +55,7 @@ class AppCard extends Component {
           obj.props.colSpan = 0;
         }
         if (index === 0) {
-          obj.children = <Radio className="bold">{text}</Radio>;
+          obj.children = <span className="bold">{text}</span>;
         }
         return obj;
       },
@@ -114,10 +121,17 @@ class AppCard extends Component {
     },
   ];
   render() {
+    const { selectedRowKeys } = this.state;
+    const { apps } = this.props.controlcenter;
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
     return (
       <Table
+        rowSelection={rowSelection}
         columns={this.columns}
-        dataSource={this.props.data}
+        dataSource={apps}
         bordered
         rowKey="id"
       />
@@ -125,4 +139,4 @@ class AppCard extends Component {
   }
 }
 
-export default AppCard;
+export default connect(({ controlcenter }) => ({ controlcenter }))(AppCard);

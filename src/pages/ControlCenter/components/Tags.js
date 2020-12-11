@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'umi';
 import { Button } from 'antd';
 import './tags.less';
 
@@ -10,7 +11,7 @@ class Tags extends Component {
     loadings: [true, true, true, true],
   };
   render() {
-    const tags = this.props.data;
+    const { tags } = this.props.controlcenter;
     const { loadings } = this.state;
     if (tags.flawCount || tags.flawCount == 0) {
       loadings[0] = false;
@@ -56,4 +57,4 @@ class Tags extends Component {
   }
 }
 
-export default Tags;
+export default connect(({ controlcenter }) => ({ controlcenter }))(Tags);

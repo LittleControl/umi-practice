@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'umi';
 import { DeleteOutlined } from '@ant-design/icons';
 import styles from './asset.less';
 
@@ -7,7 +8,7 @@ class Asset extends Component {
     super(props);
   }
   render() {
-    const assets = this.props.data;
+    const { assets } = this.props.controlcenter;
     return (
       <div className={styles.wrap}>
         <div className={styles.item}>
@@ -60,4 +61,4 @@ class Asset extends Component {
   }
 }
 
-export default Asset;
+export default connect(({ controlcenter }) => ({ controlcenter }))(Asset);
