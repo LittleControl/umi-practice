@@ -11,3 +11,9 @@ export async function fakeTargetDetection() {
     method: 'GET',
   });
 }
+
+export async function testApi() {
+  return await request('/test', {
+    method: 'GET',
+  });
+}

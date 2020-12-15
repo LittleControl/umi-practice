@@ -1,4 +1,4 @@
-import { fakeControlCenter } from '@/services/api';
+import { fakeControlCenter, testApi } from '@/services/api';
 
 export default {
   namespace: 'controlcenter',
@@ -23,7 +23,9 @@ export default {
         lot: 4,
         others: 5,
       };
-
+      const test = yield call(testApi, payload);
+      console.log(test);
+      console.log(typeof test);
       const response = yield call(fakeControlCenter, payload);
       const { tags, assets, mids, apps } = response.data;
       yield put({

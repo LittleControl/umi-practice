@@ -7,10 +7,10 @@ export default defineConfig({
     type: 'none',
   },
   proxy: {
-    '/api': {
-      target: '127.0.0.1',
+    '/test': {
+      target: 'http://127.0.0.1:5000',
       changeOrigin: true,
-      // pathRewrite: { '^api': '' }
+      pathRewrite: { '^test': '' },
     },
   },
   dva: {},

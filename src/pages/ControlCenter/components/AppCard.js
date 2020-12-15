@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'umi';
-import { Table } from 'antd';
+import { Table, Checkbox } from 'antd';
 import AppModal from './AppModal';
 import './appcard.less';
 
@@ -9,10 +9,12 @@ class AppCard extends Component {
     super(props);
   }
   state = {
-    selectedRowKeys: [],
+    checkAll: false,
+    checked: [],
+    checkList: [],
   };
-  onSelectChange = selectedRowKeys => {
-    this.setState({ selectedRowKeys });
+  onCheckAllChange = e => {
+    console.log(e.target);
   };
 
   blodFontRender = (text, row, index) => {
@@ -54,9 +56,20 @@ class AppCard extends Component {
         if (index === 2 || index === 5 || index === 7) {
           obj.props.colSpan = 0;
         }
+        let checkbox = <Checkbox>{text}</Checkbox>;
         if (index === 0) {
-          obj.children = <span className="bold">{text}</span>;
+          checkbox = (
+            <Checkbox
+              onChange={this.onCheckAllChange}
+              indeterminate={
+                this.state.checkAll ? false : this.state.checked.length > 0
+              }
+            >
+              <span className="bold">{text}</span>
+            </Checkbox>
+          );
         }
+        obj.children = checkbox;
         return obj;
       },
     },
@@ -121,20 +134,9 @@ class AppCard extends Component {
     },
   ];
   render() {
-    const { selectedRowKeys } = this.state;
     const { apps } = this.props.controlcenter;
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    };
     return (
-      <Table
-        rowSelection={rowSelection}
-        columns={this.columns}
-        dataSource={apps}
-        bordered
-        rowKey="id"
-      />
+      <Table columns={this.columns} dataSource={apps} bordered rowKey="id" />
     );
   }
 }
