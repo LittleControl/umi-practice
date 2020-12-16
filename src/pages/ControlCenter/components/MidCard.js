@@ -4,10 +4,9 @@ import { Tabs, Table, List } from 'antd';
 import styles from './midcard.less';
 
 const { TabPane } = Tabs;
-
 const ipColumns = [
   { title: 'IP', dataIndex: 'ip' },
-  { title: '服务数', dataIndex: 'serviceCount' },
+  { title: '服务数', dataIndex: 'service_count' },
 ];
 const portColumns = [
   { title: '端口', dataIndex: 'port' },
@@ -16,7 +15,7 @@ const portColumns = [
 ];
 const vendorColumns = [
   { title: '厂商', dataIndex: 'vendor' },
-  { title: '资产数', dataIndex: 'assetCount' },
+  { title: '资产数', dataIndex: 'asset_count' },
 ];
 const osColumns = [
   { title: '操作系统', dataIndex: 'os' },
@@ -30,14 +29,14 @@ class MidCard extends Component {
   render() {
     const { mids } = this.props.controlcenter;
     const {
-      ipData,
-      portData,
-      flawData,
-      weakPawdData,
-      pocData,
-      expData,
-      vendorData,
-      osData,
+      ip_data,
+      port_data,
+      bug_data,
+      weakpawd_data,
+      poc_data,
+      exp_data,
+      vendor_data,
+      os_data,
     } = mids;
     return (
       <div className={styles.wrap}>
@@ -46,7 +45,7 @@ class MidCard extends Component {
             <TabPane tab="IP" key="ip">
               <Table
                 columns={ipColumns}
-                dataSource={ipData}
+                dataSource={ip_data}
                 rowKey="id"
                 pagination={{ pageSize: 10, hideOnSinglePage: true }}
                 size="small"
@@ -55,7 +54,7 @@ class MidCard extends Component {
             <TabPane tab="端口" key="port">
               <Table
                 columns={portColumns}
-                dataSource={portData}
+                dataSource={port_data}
                 pagination={{ pageSize: 10, hideOnSinglePage: true }}
                 rowKey="id"
                 size="small"
@@ -69,7 +68,7 @@ class MidCard extends Component {
               <List
                 size="small"
                 bordered
-                dataSource={flawData}
+                dataSource={bug_data}
                 renderItem={item => (
                   <List.Item>
                     <a href={item.url} target="_blank">
@@ -83,7 +82,7 @@ class MidCard extends Component {
               <List
                 size="small"
                 bordered
-                dataSource={weakPawdData}
+                dataSource={weakpawd_data}
                 renderItem={item => (
                   <List.Item>
                     <a href={item.url} target="_blank">
@@ -101,7 +100,7 @@ class MidCard extends Component {
               <List
                 size="small"
                 bordered
-                dataSource={pocData}
+                dataSource={poc_data}
                 renderItem={item => (
                   <List.Item>
                     <a href={item.url} target="_blank">
@@ -115,7 +114,7 @@ class MidCard extends Component {
               <List
                 size="small"
                 bordered
-                dataSource={expData}
+                dataSource={exp_data}
                 renderItem={item => (
                   <List.Item>
                     <a href={item.url} target="_blank">
@@ -132,7 +131,7 @@ class MidCard extends Component {
             <TabPane tab="厂商" key="vendor">
               <Table
                 columns={vendorColumns}
-                dataSource={vendorData}
+                dataSource={vendor_data}
                 pagination={{ pageSize: 10, hideOnSinglePage: true }}
                 rowKey="id"
                 size="small"
@@ -141,7 +140,7 @@ class MidCard extends Component {
             <TabPane tab="操作系统" key="os">
               <Table
                 columns={osColumns}
-                dataSource={osData}
+                dataSource={os_data}
                 pagination={{ pageSize: 10, hideOnSinglePage: true }}
                 rowKey="id"
                 size="small"

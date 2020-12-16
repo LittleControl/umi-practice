@@ -16,7 +16,7 @@ class Asset extends Component {
             <DeleteOutlined className={styles.icon} />
           </div>
           <div className={styles.right}>
-            <span>{assets.allAssets}</span>
+            <span>{assets.all_assets}</span>
             <span>全部资产</span>
           </div>
         </div>

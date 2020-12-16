@@ -13,16 +13,16 @@ class Tags extends Component {
   render() {
     const { tags } = this.props.controlcenter;
     const { loadings } = this.state;
-    if (tags.flawCount || tags.flawCount == 0) {
+    if (tags.bug_count || tags.bug_count == 0) {
       loadings[0] = false;
     }
-    if (tags.weakPawdCount || tags.weakPawdCount == 0) {
+    if (tags.weakpawd_count || tags.weakpawd_count == 0) {
       loadings[1] = false;
     }
-    if (tags.verSuccess || tags.verSuccess == 0) {
+    if (tags.poc_count || tags.poc_count == 0) {
       loadings[2] = false;
     }
-    if (tags.useSuccess || tags.useSuccess == 0) {
+    if (tags.exp_count || tags.exp_count == 0) {
       loadings[3] = false;
     }
 
@@ -31,25 +31,25 @@ class Tags extends Component {
         <div className="item">
           <span>高危漏洞: </span>
           <Button danger loading={loadings[0]}>
-            {tags.flawCount}
+            {tags.bug_count}
           </Button>
         </div>
         <div className="item">
           <span>弱口令: </span>
           <Button danger loading={loadings[1]}>
-            {tags.weakPawdCount}
+            {tags.weakpawd_count}
           </Button>
         </div>
         <div className="item">
           <span>验证成功: </span>
           <Button type="primary" ghost loading={loadings[2]}>
-            {tags.verSuccess}
+            {tags.poc_count}
           </Button>
         </div>
         <div className="item">
           <span>利用成功: </span>
           <Button type="primary" ghost loading={loadings[3]}>
-            {tags.useSuccess}
+            {tags.exp_count}
           </Button>
         </div>
       </div>
