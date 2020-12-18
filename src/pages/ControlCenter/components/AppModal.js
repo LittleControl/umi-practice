@@ -17,22 +17,21 @@ const AppModal = props => {
       children: text,
       props: [],
     };
-    console.log(text, typeof text);
-    if (text === 0) {
+    if (text === 1) {
       obj.children = (
         <Button type="primary" danger>
           高风险
         </Button>
       );
     }
-    if (text === 1) {
+    if (text === 2) {
       obj.children = (
         <Button danger ghost>
           中风险
         </Button>
       );
     }
-    if (text === 2) {
+    if (text === 3) {
       obj.children = (
         <Button type="primary" ghost>
           低风险
@@ -47,23 +46,23 @@ const AppModal = props => {
     { title: '用户名', dataIndex: 'username' },
     { title: '密码', dataIndex: 'passwd' },
   ];
-  const flawCol = [
-    { title: '风险级别', dataIndex: 'level', render: tagRender },
-    { title: '漏洞名称', dataIndex: 'name' },
-    { title: '漏洞分类', dataIndex: 'sort' },
-    { title: '漏洞类型', dataIndex: 'type' },
+  const bugCol = [
+    { title: '风险级别', dataIndex: 'bug_level', render: tagRender },
+    { title: '漏洞名称', dataIndex: 'bug_name' },
+    { title: '漏洞分类', dataIndex: 'bug_class' },
+    { title: '漏洞类型', dataIndex: 'bug_type' },
   ];
   const pocCol = [
-    { title: '风险级别', dataIndex: 'level', render: tagRender },
-    { title: 'POC名称', dataIndex: 'name' },
-    { title: 'POC类别', dataIndex: 'sort' },
-    { title: 'POC厂商', dataIndex: 'vendor' },
+    { title: '风险级别', dataIndex: 'risk_level', render: tagRender },
+    { title: 'POC名称', dataIndex: 'poc_name' },
+    { title: 'POC类别', dataIndex: 'poc_type' },
+    { title: 'POC厂商', dataIndex: 'poc_vendor' },
   ];
   const expCol = [
-    { title: '风险级别', dataIndex: 'level', render: tagRender },
-    { title: 'EXP名称', dataIndex: 'name' },
-    { title: 'EXP类别', dataIndex: 'sort' },
-    { title: 'EXP厂商', dataIndex: 'vendor' },
+    { title: '风险级别', dataIndex: 'risk_level', render: tagRender },
+    { title: 'EXP名称', dataIndex: 'exp_name' },
+    { title: 'EXP类别', dataIndex: 'exp_type' },
+    { title: 'EXP厂商', dataIndex: 'exp_vendor' },
   ];
   let res = (
     <Fragment>
@@ -89,7 +88,7 @@ const AppModal = props => {
       </Modal>
     </Fragment>
   );
-  if (type === 'weakpasswd') {
+  if (type === 'weakpawd') {
     res = (
       <Fragment>
         <Button type="link" onClick={showModal}>
@@ -107,7 +106,7 @@ const AppModal = props => {
       </Fragment>
     );
   }
-  if (type === 'loophole') {
+  if (type === 'bug') {
     res = (
       <Fragment>
         <Button type="link" onClick={showModal}>
@@ -120,7 +119,7 @@ const AppModal = props => {
           onCancel={handleCancel}
           width={'50vw'}
         >
-          <Table columns={flawCol} dataSource={data} rowKey="id" />
+          <Table columns={bugCol} dataSource={data} rowKey="id" />
         </Modal>
       </Fragment>
     );

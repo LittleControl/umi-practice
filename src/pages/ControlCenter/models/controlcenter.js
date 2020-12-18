@@ -23,9 +23,7 @@ export default {
         lot: 4,
         others: 5,
       };
-      const test = yield call(testApi, payload);
-      console.log(test);
-      console.log(typeof test);
+      // const test = yield call(testApi, payload);
       const response = yield call(fakeControlCenter, payload);
       const { tags, assets, mids, apps } = response.data;
       yield put({

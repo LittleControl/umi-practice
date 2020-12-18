@@ -8,14 +8,14 @@ class AppCard extends Component {
   constructor(props) {
     super(props);
   }
-  state = {
-    checkAll: false,
-    checked: [],
-    checkList: [],
-  };
-  onCheckAllChange = e => {
-    console.log(e.target);
-  };
+  // state = {
+  //   checkAll: false,
+  //   checked: [],
+  //   checkList: [],
+  // }
+  // onCheckAllChange = e => {
+  //   console.log(e.target)
+  // }
 
   blodFontRender = (text, row, index) => {
     const obj = {
@@ -43,7 +43,7 @@ class AppCard extends Component {
   columns = [
     {
       title: '',
-      dataIndex: 'target',
+      dataIndex: 'ip',
       colSpan: 2,
       render: (text, row, index) => {
         const obj = {
@@ -56,20 +56,24 @@ class AppCard extends Component {
         if (index === 2 || index === 5 || index === 7) {
           obj.props.colSpan = 0;
         }
-        let checkbox = <Checkbox>{text}</Checkbox>;
-        if (index === 0) {
-          checkbox = (
-            <Checkbox
-              onChange={this.onCheckAllChange}
-              indeterminate={
-                this.state.checkAll ? false : this.state.checked.length > 0
-              }
-            >
-              <span className="bold">{text}</span>
-            </Checkbox>
-          );
+        if (index == 0) {
+          obj.children = <span className="bold">{text}</span>;
         }
-        obj.children = checkbox;
+
+        // let checkbox = <Checkbox>{text}</Checkbox>
+        // if (index === 0) {
+        //   checkbox = (
+        //     <Checkbox
+        //       onChange={this.onCheckAllChange}
+        //       indeterminate={
+        //         this.state.checkAll ? false : this.state.checked.length > 0
+        //       }
+        //     >
+        //       <span className="bold">{text}</span>
+        //     </Checkbox>
+        //   )
+        // }
+        // obj.children = checkbox
         return obj;
       },
     },
@@ -81,7 +85,7 @@ class AppCard extends Component {
     },
     {
       title: '目标侦察',
-      dataIndex: 'service',
+      dataIndex: 'service_name',
       colSpan: 4,
       render: this.blodFontRender,
     },
@@ -99,31 +103,31 @@ class AppCard extends Component {
     },
     {
       title: 't6',
-      dataIndex: 'equiptype',
+      dataIndex: 'equip_type',
       colSpan: 0,
       render: this.blodFontRender,
     },
     {
       title: '暴露面检测',
-      dataIndex: 'weakpasswd',
+      dataIndex: 'weakpawd_count',
       colSpan: 2,
       render: this.modalRowRender,
     },
     {
       title: 't8',
-      dataIndex: 'loophole',
+      dataIndex: 'bug_count',
       colSpan: 0,
       render: this.modalRowRender,
     },
     {
       title: '渗透利用',
-      dataIndex: 'poc',
+      dataIndex: 'poc_count',
       colSpan: 2,
       render: this.modalRowRender,
     },
     {
       title: 't10',
-      dataIndex: 'exp',
+      dataIndex: 'exp_count',
       colSpan: 0,
       render: this.modalRowRender,
     },
@@ -135,8 +139,24 @@ class AppCard extends Component {
   ];
   render() {
     const { apps } = this.props.controlcenter;
+    let data = [];
+    data.push({
+      id: 'a1',
+      target: '任务目标',
+      port: '端口',
+      service_name: '服务',
+      vendor: '厂商',
+      os: '操作系统',
+      equip_type: '设备类型',
+      weakpawd_count: '弱口令',
+      bug_count: '漏洞',
+      poc_count: 'POC',
+      exp_count: 'EXP',
+      operate: '操作',
+    });
+    data = data.concat(apps);
     return (
-      <Table columns={this.columns} dataSource={apps} bordered rowKey="id" />
+      <Table columns={this.columns} dataSource={data} bordered rowKey="id" />
     );
   }
 }
