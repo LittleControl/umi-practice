@@ -8,8 +8,11 @@ class GenCard extends Component {
   }
   render() {
     const SubComponent = this.props.component;
+    const special_style = this.props.sstyle
+      ? this.props.sstyle
+      : { width: '100%' };
     return (
-      <Card style={{ width: '100%' }} className={styles.cardSpace}>
+      <Card style={special_style} className={styles.cardSpace}>
         {SubComponent ? <SubComponent /> : ''}
       </Card>
     );

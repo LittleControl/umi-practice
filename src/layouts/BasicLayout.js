@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'umi';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import Header from '@/components/Header';
 
 const { SubMenu } = Menu;
@@ -8,6 +8,7 @@ const { Content, Sider } = Layout;
 const menuItems = [
   { route: '/controlcenter', name: '任务中心', key: 'ControlCenter' },
   { route: '/targetdetection', name: '目标侦测', key: 'TargetDetction' },
+  { route: '/eventsurvey', name: '事件调查', key: 'EventSurvey' },
 ];
 
 class BasicLayout extends Component {
@@ -43,9 +44,6 @@ class BasicLayout extends Component {
               </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
-              {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>任务中心</Breadcrumb.Item>
-              </Breadcrumb> */}
               <Content
                 className="site-layout-background"
                 style={{

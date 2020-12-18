@@ -16,6 +16,10 @@ export default [
         path: '/targetdetection',
         component: './TargetDetection/TargetDetection',
       },
+      {
+        path: '/eventsurvey',
+        component: './EventSurvey/EventSurvey',
+      },
     ],
   },
 ];
