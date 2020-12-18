@@ -3,16 +3,16 @@ import { fakeTargetDetection } from '@/services/api';
 export default {
   namespace: 'targetdetection',
   state: {
-    tableData: [],
+    table_data: [],
   },
   effects: {
     *query({ type, payload }, { call, put, select }) {
       const response = yield call(fakeTargetDetection, payload);
-      const { tableData } = response.data;
+      const { table_data } = response.data;
       yield put({
         type: 'save',
         payload: {
-          tableData,
+          table_data,
         },
       });
     },

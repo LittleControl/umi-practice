@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import { connect } from 'umi';
-// import targetdetection from '../models/targetdetection'
 
 const columns = [
-  { title: '目标', dataIndex: 'target' },
+  { title: '目标', dataIndex: 'ip' },
   { title: '端口', dataIndex: 'port' },
-  { title: '服务', dataIndex: 'service' },
+  { title: '服务', dataIndex: 'service_name' },
   { title: '操作系统', dataIndex: 'os' },
-  { title: '设备类型', dataIndex: 'type' },
+  { title: '设备类型', dataIndex: 'equip_type' },
   { title: '设备厂商', dataIndex: 'vendor' },
-  { title: '所属任务', dataIndex: 'task' },
+  { title: '所属任务', dataIndex: 'operate' },
 ];
 class TableCard extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class TableCard extends Component {
   };
   render() {
     const { selectedRowKeys } = this.state;
-    const { tableData } = this.props.targetdetection;
+    const { table_data } = this.props.targetdetection;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -34,7 +33,7 @@ class TableCard extends Component {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={tableData}
+          dataSource={table_data}
           rowKey="id"
         />
       </div>
