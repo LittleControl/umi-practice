@@ -20,6 +20,22 @@ export default [
         path: '/eventsurvey',
         component: './EventSurvey/EventSurvey',
       },
+      {
+        path: 'buglib',
+        component: './Armory/BugLib',
+      },
+      {
+        path: 'passwdlib',
+        component: './Armory/PasswdLib',
+      },
+      {
+        path: 'poclib',
+        component: './Armory/POCLib',
+      },
+      {
+        path: 'explib',
+        component: './Armory/EXPLib',
+      },
     ],
   },
 ];

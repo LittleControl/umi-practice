@@ -10,6 +10,17 @@ const menuItems = [
   { route: '/targetdetection', name: '目标侦测', key: 'TargetDetction' },
   { route: '/eventsurvey', name: '事件调查', key: 'EventSurvey' },
 ];
+const subArmory = [
+  { route: '/buglib', name: '漏洞库', key: 'BugLib' },
+  { route: '/passwdlib', name: '口令库', key: 'PasswdLib' },
+  { route: '/poclib', name: 'POC库', key: 'POCLib' },
+  { route: '/explib', name: 'EXP库', key: 'EXPLib' },
+];
+const subSysManage = [
+  { route: '/netmanage', name: '网络管理', key: 'NetManage' },
+  { route: '/accountmanage', name: '帐号管理', key: 'AccountManage' },
+  { route: '/licensemanage', name: 'LINCENSE管理', key: 'LicenseMangage' },
+];
 
 class BasicLayout extends Component {
   constructor(props) {
@@ -35,11 +46,23 @@ class BasicLayout extends Component {
                     </Menu.Item>
                   );
                 })}
-                <SubMenu key="sub1" title="武器库">
-                  <Menu.Item key="1">Option 1</Menu.Item>
-                  <Menu.Item key="2">Option 2</Menu.Item>
-                  <Menu.Item key="3">Option 3</Menu.Item>
-                  <Menu.Item key="4">Option 4</Menu.Item>
+                <SubMenu key="Armory" title="武器库">
+                  {subArmory.map(value => {
+                    return (
+                      <Menu.Item key={value.key}>
+                        <Link to={value.route}>{value.name}</Link>
+                      </Menu.Item>
+                    );
+                  })}
+                </SubMenu>
+                <SubMenu key="SysManage" title="系统管理">
+                  {subSysManage.map(value => {
+                    return (
+                      <Menu.Item key={value.key}>
+                        <Link to={value.route}>{value.name}</Link>
+                      </Menu.Item>
+                    );
+                  })}
                 </SubMenu>
               </Menu>
             </Sider>

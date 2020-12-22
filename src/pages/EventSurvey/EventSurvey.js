@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'umi';
 import { Space } from 'antd';
 import GenCard from '@/components/GenCard';
 import LinkMenu from './components/LinkMenu';
