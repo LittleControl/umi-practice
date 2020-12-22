@@ -21,20 +21,32 @@ export default [
         component: './EventSurvey/EventSurvey',
       },
       {
-        path: 'buglib',
+        path: '/buglib',
         component: './Armory/BugLib',
       },
       {
-        path: 'passwdlib',
+        path: '/passwdlib',
         component: './Armory/PasswdLib',
       },
       {
-        path: 'poclib',
+        path: '/poclib',
         component: './Armory/POCLib',
       },
       {
-        path: 'explib',
+        path: '/explib',
         component: './Armory/EXPLib',
+      },
+      {
+        path: '/netmanage',
+        component: './SysManage/NetManage',
+      },
+      {
+        path: '/accountmanage',
+        component: './SysManage/AccountManage',
+      },
+      {
+        path: '/licensemanage',
+        component: './SysManage/LicenseManage',
       },
     ],
   },
