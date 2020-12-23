@@ -15,4 +15,7 @@ export default defineConfig({
   },
   dva: {},
   antd: {},
+  theme: {
+    // "font-size-base": "24px",
+  },
 });
