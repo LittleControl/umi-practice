@@ -81,18 +81,24 @@ class POCLib extends Component {
         <br />
         <Card style={{ width: '100%' }}>
           <Row align="middle">
-            <Col span={8}></Col>
-            <Col span={8}>
-              <Space style={{ fontSize: '1.5em' }}>
-                <DesktopOutlined className="icon-size" />{' '}
-                <span>总数据: 262&nbsp;&nbsp;&nbsp;</span>
-                <ApartmentOutlined className="icon-size" />{' '}
-                <span>分类: 21&nbsp;&nbsp;&nbsp;</span>
-                <MenuUnfoldOutlined className="icon-size" />{' '}
-                <span>厂商: 747&nbsp;&nbsp;&nbsp;</span>
-              </Space>
+            <Col span={6}></Col>
+            <Col span={12}>
+              <Row style={{ fontSize: '1.5em' }}>
+                <Col span={8}>
+                  <DesktopOutlined className="icon-size" />
+                  <span>总数据: 262&nbsp;&nbsp;&nbsp;</span>
+                </Col>
+                <Col span={8}>
+                  <ApartmentOutlined className="icon-size" />
+                  <span>分类: 21&nbsp;&nbsp;&nbsp;</span>
+                </Col>
+                <Col span={8}>
+                  <MenuUnfoldOutlined className="icon-size" />
+                  <span>厂商: 747&nbsp;&nbsp;&nbsp;</span>
+                </Col>
+              </Row>
             </Col>
-            <Col span={8}></Col>
+            <Col span={4}></Col>
           </Row>
           <Divider />
           <Row align="middle" gutter={(24, 24)}>
