@@ -36,7 +36,7 @@ class BasicLayout extends Component {
               <Menu
                 mode="inline"
                 defaultSelectedKeys={['ControlCenter']}
-                defaultOpenKeys={['sub1']}
+                defaultOpenKeys={['Armory', 'SysManage']}
                 style={{ height: '100%' }}
               >
                 {menuItems.map(value => {
