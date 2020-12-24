@@ -8,6 +8,8 @@ const { Content, Sider } = Layout;
 const menuItems = [
   { route: '/controlcenter', name: '任务中心', key: 'ControlCenter' },
   { route: '/targetdetection', name: '目标侦测', key: 'TargetDetction' },
+  { route: '/edsurdetect', name: '暴露面检测', key: 'EdsurDetect' },
+  { route: '/Penetration', name: '渗透利用', key: 'Penetration' },
   { route: '/eventsurvey', name: '事件调查', key: 'EventSurvey' },
 ];
 const subArmory = [

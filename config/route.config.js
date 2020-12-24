@@ -48,6 +48,14 @@ export default [
         path: '/licensemanage',
         component: './SysManage/LicenseManage',
       },
+      {
+        path: '/edsurdetect',
+        component: './EdsurDetect/EdsurDetect',
+      },
+      {
+        path: '/penetration',
+        component: './Penetration/Penetration',
+      },
     ],
   },
 ];
