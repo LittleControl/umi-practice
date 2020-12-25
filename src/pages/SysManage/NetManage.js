@@ -11,6 +11,7 @@ import {
   Input,
 } from 'antd';
 import { RocketOutlined } from '@ant-design/icons';
+import AddItemModal from './components/AddItemModal';
 
 const { TabPane } = Tabs;
 const ipColums = [
@@ -44,9 +45,10 @@ const ipColums = [
       };
       obj.children = (
         <Space>
-          <Button type="primary" ghost>
+          {/* <Button type="primary" ghost>
             编辑
-          </Button>
+          </Button> */}
+          <AddItemModal />
           <Button danger ghost>
             删除
           </Button>
@@ -77,11 +79,12 @@ const ipData = [
 const OperationsSlot = {
   right: (
     <Space>
-      <Button type="primary" ghost>
-        编辑
-      </Button>
+      {/* <Button type="primary" ghost>
+        新增
+      </Button> */}
+      <AddItemModal />
       <Button danger ghost>
-        删除
+        刷新
       </Button>
     </Space>
   ),
@@ -149,7 +152,7 @@ const infaData = [
     pkg_receive_rate: '78',
   },
   {
-    id: 'ifa002',
+    id: 'ifa003',
     infa_name: 'GE2',
     vlan_name: 'MngtVlan',
     infa_status: 'enabled',
@@ -160,7 +163,7 @@ const infaData = [
     pkg_receive_rate: '90',
   },
   {
-    id: 'ifa003',
+    id: 'ifa004',
     infa_name: 'GE3',
     vlan_name: 'MngtVlan',
     infa_status: 'disabled',
@@ -171,7 +174,7 @@ const infaData = [
     pkg_receive_rate: '78',
   },
   {
-    id: 'ifa004',
+    id: 'ifa005',
     infa_name: 'GE4',
     vlan_name: 'MngtVlan',
     infa_status: 'enabled',
@@ -233,9 +236,16 @@ class NetManage extends Component {
   state = {
     selectedRowKeys: [], // Check here to configure the default column
     loading: false,
+    activeTab: 'ip_manage',
   };
   onSelectChange = selectedRowKeys => {
     this.setState({ selectedRowKeys });
+  };
+  onTabChange = activeKeys => {
+    console.log(activeKeys);
+    this.setState({
+      activeTab: activeKeys,
+    });
   };
   render() {
     const { selectedRowKeys } = this.state;
@@ -249,15 +259,17 @@ class NetManage extends Component {
           <Tabs
             defaultActiveKey="ip_manage"
             tabBarExtraContent={OperationsSlot}
+            onChange={this.onTabChange}
           >
             <TabPane tab="IP管理配置" key="ip_manage">
-              <Table columns={ipColums} dataSource={ipData} />
+              <Table rowKey={'id'} columns={ipColums} dataSource={ipData} />
             </TabPane>
             <TabPane tab="接口配置" key="infa_manage">
-              <Table columns={infaColums} dataSource={infaData} />
+              <Table rowKey={'id'} columns={infaColums} dataSource={infaData} />
             </TabPane>
             <TabPane tab="路由配置" key="route_manage">
               <Table
+                rowKey={'id'}
                 columns={routeColums}
                 dataSource={routeData}
                 rowSelection={rowSelection}
