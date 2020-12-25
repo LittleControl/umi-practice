@@ -2,26 +2,27 @@ import React, { Fragment, Component } from 'react';
 import { Link } from 'umi';
 import { Layout, Menu } from 'antd';
 import Header from '@/components/Header';
+import { history } from 'umi';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 const menuItems = [
-  { route: '/controlcenter', name: '任务中心', key: 'ControlCenter' },
-  { route: '/targetdetection', name: '目标侦测', key: 'TargetDetction' },
-  { route: '/edsurdetect', name: '暴露面检测', key: 'EdsurDetect' },
-  { route: '/Penetration', name: '渗透利用', key: 'Penetration' },
-  { route: '/eventsurvey', name: '事件调查', key: 'EventSurvey' },
+  { route: '/controlcenter', name: '任务中心', key: '/controlcenter' },
+  { route: '/targetdetection', name: '目标侦测', key: '/targetdetection' },
+  { route: '/edsurdetect', name: '暴露面检测', key: '/edsurdetect' },
+  { route: '/penetration', name: '渗透利用', key: '/penetration' },
+  { route: '/eventsurvey', name: '事件调查', key: '/eventsurvey' },
 ];
 const subArmory = [
-  { route: '/buglib', name: '漏洞库', key: 'BugLib' },
-  { route: '/passwdlib', name: '口令库', key: 'PasswdLib' },
-  { route: '/poclib', name: 'POC库', key: 'POCLib' },
-  { route: '/explib', name: 'EXP库', key: 'EXPLib' },
+  { route: '/buglib', name: '漏洞库', key: '/buglib' },
+  { route: '/passwdlib', name: '口令库', key: '/passwdlib' },
+  { route: '/poclib', name: 'POC库', key: '/poclib' },
+  { route: '/explib', name: 'EXP库', key: '/explib' },
 ];
 const subSysManage = [
-  { route: '/netmanage', name: '网络管理', key: 'NetManage' },
-  { route: '/accountmanage', name: '帐号管理', key: 'AccountManage' },
-  { route: '/licensemanage', name: 'LINCENSE管理', key: 'LicenseMangage' },
+  { route: '/netmanage', name: '网络管理', key: '/netmanage' },
+  { route: '/accountmanage', name: '帐号管理', key: '/accountmanage' },
+  { route: '/licensemanage', name: 'LINCENSE管理', key: '/licensemanage' },
 ];
 
 class BasicLayout extends Component {
@@ -37,7 +38,7 @@ class BasicLayout extends Component {
             <Sider width="12vw" className="site-layout-background">
               <Menu
                 mode="inline"
-                defaultSelectedKeys={['ControlCenter']}
+                defaultSelectedKeys={[history.location.pathname]}
                 defaultOpenKeys={['Armory', 'SysManage']}
                 style={{ height: '100%' }}
               >
