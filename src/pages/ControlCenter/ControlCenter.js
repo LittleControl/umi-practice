@@ -25,6 +25,7 @@ class ControlCenter extends Component {
     }
   }
   render() {
+    // console.log(this.props.controlcenter)
     return (
       <Fragment>
         <Space direction="vertical" style={{ width: '100%' }}>
@@ -39,6 +40,8 @@ class ControlCenter extends Component {
     );
   }
 }
+
+// export default ControlCenter;
 
 export default connect(({ controlcenter }) => ({ controlcenter }))(
   ControlCenter,

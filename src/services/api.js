@@ -12,6 +12,10 @@ export async function fakeTargetDetection() {
   });
 }
 
+export async function fakeNetManage() {
+  return await request('/api/netmanage');
+}
+
 export async function testApi() {
   return await request('/test', {
     method: 'GET',

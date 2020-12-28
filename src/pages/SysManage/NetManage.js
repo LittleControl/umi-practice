@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import {
-  Card,
-  Tabs,
-  Table,
-  Button,
-  Space,
-  Divider,
-  Row,
-  Col,
-  Input,
-} from 'antd';
+import { Card, Tabs, Table, Button, Divider, Row, Col, Input } from 'antd';
 import { RocketOutlined } from '@ant-design/icons';
 import AddItemModal from './components/AddItemModal';
+import { connect } from 'umi';
 
 const { TabPane } = Tabs;
+
 const ipColums = [
   { title: 'VLAN名称', dataIndex: 'vlan_name' },
   { title: 'IP地址', dataIndex: 'ip' },
@@ -43,52 +35,11 @@ const ipColums = [
         children: item,
         props: [],
       };
-      obj.children = (
-        <Space>
-          {/* <Button type="primary" ghost>
-            编辑
-          </Button> */}
-          <AddItemModal />
-          <Button danger ghost>
-            删除
-          </Button>
-        </Space>
-      );
+      obj.children = <AddItemModal type={'ip_manage_edit'} row={rows} />;
       return obj;
     },
   },
 ];
-const ipData = [
-  {
-    id: 'ipd001',
-    vlan_name: 'MntVlan',
-    ip: '127.0.0.1',
-    sub_mask: '255.255.255.0',
-    mtu: '1500',
-    status: 'enabled',
-  },
-  {
-    id: 'ipd002',
-    vlan_name: 'AllVlan',
-    ip: '192.168.1.1',
-    sub_mask: '255.255.255.0',
-    mtu: '1500',
-    status: 'disabled',
-  },
-];
-const OperationsSlot = {
-  right: (
-    <Space>
-      {/* <Button type="primary" ghost>
-        新增
-      </Button> */}
-      <AddItemModal />
-      <Button danger ghost>
-        刷新
-      </Button>
-    </Space>
-  ),
-};
 const infaColums = [
   { title: '接口名称', dataIndex: 'infa_name' },
   { title: 'VLAN名称', dataIndex: 'vlan_name' },
@@ -128,110 +79,26 @@ const infaColums = [
     },
   },
 ];
-const infaData = [
-  {
-    id: 'ifa001',
-    infa_name: 'GE0',
-    vlan_name: 'MngtVlan',
-    infa_status: 'enabled',
-    port_status: 'down',
-    send_rate: '0',
-    pkg_send_rate: '7',
-    receive_rate: '223',
-    pkg_receive_rate: '90',
-  },
-  {
-    id: 'ifa002',
-    infa_name: 'GE1',
-    vlan_name: 'MngtVlan',
-    infa_status: 'disabled',
-    port_status: 'up',
-    send_rate: '30',
-    pkg_send_rate: '0',
-    receive_rate: '0',
-    pkg_receive_rate: '78',
-  },
-  {
-    id: 'ifa003',
-    infa_name: 'GE2',
-    vlan_name: 'MngtVlan',
-    infa_status: 'enabled',
-    port_status: 'down',
-    send_rate: '0',
-    pkg_send_rate: '7',
-    receive_rate: '223',
-    pkg_receive_rate: '90',
-  },
-  {
-    id: 'ifa004',
-    infa_name: 'GE3',
-    vlan_name: 'MngtVlan',
-    infa_status: 'disabled',
-    port_status: 'up',
-    send_rate: '40',
-    pkg_send_rate: '0',
-    receive_rate: '0',
-    pkg_receive_rate: '78',
-  },
-  {
-    id: 'ifa005',
-    infa_name: 'GE4',
-    vlan_name: 'MngtVlan',
-    infa_status: 'enabled',
-    port_status: 'down',
-    send_rate: '0',
-    pkg_send_rate: '7',
-    receive_rate: '145',
-    pkg_receive_rate: '90',
-  },
-];
 const routeColums = [
   { title: '目的地址', dataIndex: 'target_ip' },
   { title: '子网掩码/子网前缀长度', dataIndex: 'sub_mask_len' },
   { title: '下一跳', dataIndex: 'next_hop' },
   { title: 'Metric', dataIndex: 'metric' },
 ];
-const routeData = [
-  {
-    id: 'rd001',
-    target_ip: '0.0.0.0',
-    sub_mask_len: '0.0.0.0',
-    next_hop: '192.168.1.1',
-    metric: '0',
-  },
-  {
-    id: 'rd002',
-    target_ip: '127.0.0.1',
-    sub_mask_len: '255.255.255.0',
-    next_hop: '192.168.1.1',
-    metric: '1',
-  },
-  {
-    id: 'rd003',
-    target_ip: '192.168.1.1',
-    sub_mask_len: '255.255.0.0',
-    next_hop: '114.114.114.114',
-    metric: '2',
-  },
-  {
-    id: 'rd004',
-    target_ip: '255.255.255.255',
-    sub_mask_len: '255.0.0.0',
-    next_hop: '127.0.0.1',
-    metric: '3',
-  },
-  {
-    id: 'rd005',
-    target_ip: '8.8.8.8',
-    sub_mask_len: '255.255.255.255',
-    next_hop: '178.965.41.23',
-    metric: '4',
-  },
-];
-
 class NetManage extends Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
+    const {
+      dispatch,
+      location: { pathname },
+    } = this.props;
+    if (pathname === '/netmanage') {
+      dispatch({
+        type: 'netmanage/query',
+      });
+    }
   }
   state = {
     selectedRowKeys: [], // Check here to configure the default column
@@ -242,17 +109,21 @@ class NetManage extends Component {
     this.setState({ selectedRowKeys });
   };
   onTabChange = activeKeys => {
-    console.log(activeKeys);
     this.setState({
       activeTab: activeKeys,
     });
   };
   render() {
-    const { selectedRowKeys } = this.state;
+    const { selectedRowKeys, activeTab } = this.state;
+    const { ipData, infaData, routeData } = this.props.netmanage;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
+    const OperationsSlot = {
+      right: <AddItemModal type={activeTab} />,
+    };
+
     return (
       <>
         <Card>
@@ -320,4 +191,4 @@ class NetManage extends Component {
   }
 }
 
-export default NetManage;
+export default connect(({ netmanage }) => ({ netmanage }))(NetManage);

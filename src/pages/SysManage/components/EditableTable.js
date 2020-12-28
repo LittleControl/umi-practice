@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Button } from 'antd';
+import {
+  Table,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Form,
+  Button,
+  Space,
+} from 'antd';
 const originData = [
   // { id: 'ord001', ip: '127.0.0.1', mask: '255.255.255.0' },
 ];
@@ -55,6 +63,13 @@ const EditableTable = () => {
     setEditingID(record.id);
   };
 
+  const deleteItem = record => {
+    let newData = [...data];
+    const index = newData.indexOf(record);
+    newData.splice(index, 1);
+    setData(newData);
+  };
+
   const cancel = () => {
     setEditingID('');
   };
@@ -99,23 +114,21 @@ const EditableTable = () => {
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <span>
-            <a
-              onClick={() => save(record.id)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </a>
+          <Space>
+            <a onClick={() => save(record.id)}>Save</a>
             <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
               <a>Cancel</a>
             </Popconfirm>
-          </span>
+          </Space>
         ) : (
-          <a disabled={editingID !== ''} onClick={() => edit(record)}>
-            Edit
-          </a>
+          <Space>
+            <a disabled={editingID !== ''} onClick={() => edit(record)}>
+              Edit
+            </a>
+            <a disabled={editingID !== ''} onClick={() => deleteItem(record)}>
+              Delete
+            </a>
+          </Space>
         );
       },
     },
