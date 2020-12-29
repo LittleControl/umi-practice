@@ -133,7 +133,11 @@ class NetManage extends Component {
             onChange={this.onTabChange}
           >
             <TabPane tab="IP管理配置" key="ip_manage">
-              <Table rowKey={'id'} columns={ipColums} dataSource={ipData} />
+              <Table
+                rowKey={record => record.id}
+                columns={ipColums}
+                dataSource={ipData}
+              />
             </TabPane>
             <TabPane tab="接口配置" key="infa_manage">
               <Table rowKey={'id'} columns={infaColums} dataSource={infaData} />

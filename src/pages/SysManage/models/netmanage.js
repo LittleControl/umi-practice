@@ -39,11 +39,12 @@ export default {
     },
     delete(state, { payload }) {
       const { row } = payload;
-      console.log(row);
-      const index = state.ipData.indexOf(row);
-      state.ipData.splice(index, 1);
+      const ipData = [...state.ipData];
+      const index = ipData.indexOf(row);
+      ipData.splice(index, 1);
       return {
         ...state,
+        ipData,
       };
     },
   },
