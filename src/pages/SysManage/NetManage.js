@@ -30,7 +30,7 @@ const ipColums = [
   {
     title: '操作',
     dataIndex: 'operate',
-    render: (item, rows, index) => {
+    render: (item, rows) => {
       const obj = {
         children: item,
         props: [],
@@ -59,7 +59,31 @@ const infaColums = [
       return obj;
     },
   },
-  { title: '端口状态', dataIndex: 'port_status' },
+  {
+    title: '端口状态',
+    dataIndex: 'port_status',
+    render: value => {
+      const obj = {
+        children: value,
+        props: [],
+      };
+      if (value === 'enabled') {
+        obj.children = '启用';
+      } else {
+        obj.children = '禁用';
+      }
+      return obj;
+    },
+  },
+  {
+    title: '传输速率',
+    dataIndex: 'bandwidth',
+    colSpan: 0,
+    render: () => ({
+      children: '',
+      props: { colSpan: 0 },
+    }),
+  },
   { title: '发送速率(bps)', dataIndex: 'send_rate' },
   { title: '发包速率(pps)', dataIndex: 'pkg_send_rate' },
   { title: '接收速率(bps)', dataIndex: 'receive_rate' },
@@ -67,13 +91,9 @@ const infaColums = [
   {
     title: '操作',
     dataIndex: 'operate',
-    render: () => {
+    render: (item, rows) => {
       return {
-        children: (
-          <Button type="primary" ghost>
-            编辑
-          </Button>
-        ),
+        children: <AddItemModal type={'infa_manage_edit'} row={rows} />,
         props: [],
       };
     },
@@ -123,7 +143,6 @@ class NetManage extends Component {
     const OperationsSlot = {
       right: <AddItemModal type={activeTab} />,
     };
-
     return (
       <>
         <Card>

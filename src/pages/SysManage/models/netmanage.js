@@ -20,12 +20,32 @@ export default {
         },
       });
     },
-    *deleteRow({ payload }, { put }) {
+    *deleteIpRow({ payload }, { put }) {
       const { row } = payload;
       yield put({
-        type: 'delete',
+        type: 'ipDelete',
         payload: {
           row,
+        },
+      });
+    },
+    *editIpRow({ payload }, { put }) {
+      const { row, values } = payload;
+      yield put({
+        type: 'ipEdit',
+        payload: {
+          row,
+          values,
+        },
+      });
+    },
+    *editInfaRow({ payload }, { put }) {
+      const { row, values } = payload;
+      yield put({
+        type: 'infaEdit',
+        payload: {
+          row,
+          values,
         },
       });
     },
@@ -37,7 +57,7 @@ export default {
         ...payload,
       };
     },
-    delete(state, { payload }) {
+    ipDelete(state, { payload }) {
       const { row } = payload;
       const ipData = [...state.ipData];
       const index = ipData.indexOf(row);
@@ -45,6 +65,26 @@ export default {
       return {
         ...state,
         ipData,
+      };
+    },
+    ipEdit(state, { payload }) {
+      const { row, values } = payload;
+      const ipData = [...state.ipData];
+      const index = ipData.indexOf(row);
+      ipData.splice(index, 1, values);
+      return {
+        ...state,
+        ipData,
+      };
+    },
+    infaEdit(state, { payload }) {
+      const { row, values } = payload;
+      const infaData = [...state.infaData];
+      const index = infaData.indexOf(row);
+      infaData[index] = Object.assign(row, values);
+      return {
+        ...state,
+        infaData,
       };
     },
   },
