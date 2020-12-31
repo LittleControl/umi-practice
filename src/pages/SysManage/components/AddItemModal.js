@@ -8,7 +8,6 @@ import {
   Row,
   Col,
   Input,
-  Divider,
   Space,
   Select,
   Spin,
@@ -22,6 +21,7 @@ const { Option } = Select;
 
 const AddItemModal = props => {
   const { type, row } = props;
+  console.log(type);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [current, setCurrent] = useState(0);
   const showModal = () => {
@@ -196,70 +196,122 @@ const AddItemModal = props => {
       );
     }
   }
+  const route_manage_onFinish = values => {
+    console.log(values);
+  };
   if (type === 'route_manage') {
     return (
       <>
         <Space>
           <Button type="primary" ghost onClick={showModal}>
-            新增
+            编辑
           </Button>
           <Button danger ghost>
             刷新
           </Button>
         </Space>
         <Modal
-          title="VLAN 接口配置"
+          title="新增路由"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
+          footer={null}
           width={1000}
         >
-          <h2>新增路由</h2>
-          <Divider />
-          <Row gutter={(24, 24)}>
-            <Col span={5}>目的地址</Col>
-            <Col span={9}>
-              <Input />
-            </Col>
-            <Col span={10}>
-              <span style={{ color: 'red' }}>*</span>提示: 请填写目的IP地址.
-              例如: ipv4:192.1668.3.22 例如:
-              ipv6:2001:fecd:ba23:cd1f:dcb1:1010:9324:4088
-            </Col>
-          </Row>
-          <Row gutter={(24, 24)}>
-            <Col span={5}>子网掩码/子网前缀长度</Col>
-            <Col span={9}>
-              <Input />
-            </Col>
-            <Col span={10}>
-              <span style={{ color: 'red' }}>*</span>提示:
-              请填写子网掩码/子网前缀长度. 例如: ipv4:255.255.255.0 例如:
-              ipv6:64
-            </Col>
-          </Row>
-          <Row gutter={(24, 24)}>
-            <Col span={5}>下一跳</Col>
-            <Col span={9}>
-              <Input />
-            </Col>
-            <Col span={10}>
-              <span style={{ color: 'red' }}>*</span>提示: 请填写下一跳IP地址.
-              格式与[目的地址]相同
-            </Col>
-          </Row>
-          <Row gutter={(24, 24)}>
-            <Col span={5}>Metric</Col>
-            <Col span={9}>
-              <Input />
-            </Col>
-            <Col span={10}>
-              <span style={{ color: 'red' }}>*</span>
-              指路由算法用以确定到达目的地的最佳路径的计量标准(范围是1~9999).
-              默认: 1
-            </Col>
-          </Row>
-          <Button type="primary">提交</Button>
+          <Form onFinish={route_manage_onFinish}>
+            <Row align="top" gutter={(24, 24)}>
+              <Col span={5}>目的地址</Col>
+              <Col span={9}>
+                <Form.Item
+                  name="target_ip"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input the target ip!',
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <span>
+                  <span style={{ color: 'red' }}>*</span>
+                  请填写目的IP地址. 例如: ipv4:192.168.3.22 例如:
+                  ipv6:2001:fecd:ba23:cd1f:dcb1:1010:9324:4088
+                </span>
+              </Col>
+            </Row>
+            <Row align="top" gutter={(24, 24)}>
+              <Col span={5}>子网掩码/子网前缀长度</Col>
+              <Col span={9}>
+                <Form.Item
+                  name="sub_mask_len"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input the sub mask',
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <span>
+                  <span style={{ color: 'red' }}>*</span>
+                  请填写子网掩码/子网前缀长度.例如: ipv4:255.255.255.0 例如:
+                  ipv6:64
+                </span>
+              </Col>
+            </Row>
+            <Row align="top" gutter={(24, 24)}>
+              <Col span={5}>下一跳</Col>
+              <Col span={9}>
+                <Form.Item
+                  name="next_hop"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input the next hop',
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <span>
+                  <span style={{ color: 'red' }}>*</span>
+                  请填写下一跳地址,格式与目的地址相同
+                </span>
+              </Col>
+            </Row>
+            <Row align="top" gutter={(24, 24)}>
+              <Col span={5}>Metric</Col>
+              <Col span={9}>
+                <Form.Item name="metric">
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <span style={{ color: 'red' }}>*</span>
+                指路由算法用以确定到达目的地的最佳路径的计量标准(范围是1~9999).
+                默认: 1
+              </Col>
+            </Row>
+            <Row>
+              <Col span={20}></Col>
+              <Col span={4}>
+                <Space>
+                  <Button type="primary" htmlType="submit">
+                    确定
+                  </Button>
+                  <Button onClick={handleCancel}>取消</Button>
+                </Space>
+              </Col>
+            </Row>
+          </Form>
         </Modal>
       </>
     );
