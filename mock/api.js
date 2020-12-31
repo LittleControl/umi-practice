@@ -717,6 +717,10 @@ export default {
           metric: '4',
         },
       ],
+      dnsInfo: {
+        main_dns: '8.8.8.8',
+        minor_dns: '114.114.114.114',
+      },
     },
   },
 };

@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
-import { Card, Tabs, Table, Button, Divider, Row, Col, Input } from 'antd';
+import {
+  Card,
+  Tabs,
+  Table,
+  Button,
+  Divider,
+  Row,
+  Col,
+  Input,
+  Form,
+  message,
+} from 'antd';
 import { RocketOutlined } from '@ant-design/icons';
 import AddItemModal from './components/AddItemModal';
 import { connect } from 'umi';
@@ -143,6 +154,20 @@ class NetManage extends Component {
     const OperationsSlot = {
       right: <AddItemModal type={activeTab} />,
     };
+    const { main_dns, minor_dns } = this.props.netmanage.dnsInfo;
+    const dnsInitialValues = { main_dns, minor_dns };
+    const dnsOnFinished = values => {
+      const { dispatch } = this.props;
+      const { main_dns, minor_dns } = values;
+      dispatch({
+        type: 'netmanage/editDns',
+        payload: {
+          main_dns,
+          minor_dns,
+        },
+      });
+      message.success('Processing complete!');
+    };
     return (
       <>
         <Card>
@@ -175,37 +200,59 @@ class NetManage extends Component {
                 主备DNS服务器
               </p>
               <Divider />
-              <Row>
-                <Col span={3}>主DNS服务器</Col>
-                <Col span={7}>
-                  <Input value="8.8.8.8" />
-                </Col>
-                <Col span={1}></Col>
-                <Col span={10}>
-                  <p>
-                    <span style={{ color: 'red' }}>*</span>支持IPV4以及IPV6网络,
-                    IPV6网络示例: 2001:0db8:85a3:08d3:1319:8a2e:0370:7344
-                  </p>
-                </Col>
-              </Row>
-              <br></br>
-              <Row>
-                <Col span={3}>备DNS服务器</Col>
-                <Col span={7}>
-                  <Input value="114.114.114.114" />
-                </Col>
-                <Col span={1}></Col>
-                <Col span={10}></Col>
-              </Row>
-              <br />
-              <Row>
-                <Col span={3}>
-                  <Button type="primary">保存</Button>
-                </Col>
-                <Col span={7}></Col>
-                <Col span={1}></Col>
-                <Col span={10}></Col>
-              </Row>
+              <Form onFinish={dnsOnFinished} initialValues={dnsInitialValues}>
+                <Row>
+                  <Col span={3}>主DNS服务器</Col>
+                  <Col span={7}>
+                    <Form.Item
+                      name="main_dns"
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input the main dns',
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={1}></Col>
+                  <Col span={10}>
+                    <p>
+                      <span style={{ color: 'red' }}>*</span>
+                      支持IPV4以及IPV6网络, IPV6网络示例:
+                      2001:0db8:85a3:08d3:1319:8a2e:0370:7344
+                    </p>
+                  </Col>
+                </Row>
+                <br></br>
+                <Row>
+                  <Col span={3}>备DNS服务器</Col>
+                  <Col span={7}>
+                    <Form.Item
+                      name="minor_dns"
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input the minor dns',
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                  </Col>
+                  <Col span={1}></Col>
+                  <Col span={10}></Col>
+                </Row>
+                <br />
+                <Row>
+                  <Col span={3}>
+                    <Button type="primary" htmlType="submit">
+                      保存
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
             </TabPane>
           </Tabs>
         </Card>

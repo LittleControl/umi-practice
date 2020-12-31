@@ -6,17 +6,19 @@ export default {
     ipData: [],
     infaData: [],
     routeData: [],
+    dnsInfo: {},
   },
   effects: {
     *query({ type, payload }, { put, call, select }) {
       const response = yield call(fakeNetManage);
-      const { ipData, infaData, routeData } = response.data;
+      const { ipData, infaData, routeData, dnsInfo } = response.data;
       yield put({
         type: 'save',
         payload: {
           ipData,
           infaData,
           routeData,
+          dnsInfo,
         },
       });
     },
@@ -46,6 +48,25 @@ export default {
         payload: {
           row,
           values,
+        },
+      });
+    },
+    *addRoute({ payload }, { put }) {
+      const { values } = payload;
+      yield put({
+        type: 'routeAdd',
+        payload: {
+          values,
+        },
+      });
+    },
+    *editDns({ payload }, { put }) {
+      const { main_dns, minor_dns } = payload;
+      yield put({
+        type: 'dnsEdit',
+        payload: {
+          main_dns,
+          minor_dns,
         },
       });
     },
@@ -85,6 +106,25 @@ export default {
       return {
         ...state,
         infaData,
+      };
+    },
+    routeAdd(state, { payload }) {
+      const routeData = [...state.routeData];
+      const { values } = payload;
+      routeData.push(values);
+      return {
+        ...state,
+        routeData,
+      };
+    },
+    dnsEdit(state, { payload }) {
+      const dnsInfo = {
+        ...state.dnsInfo,
+        ...payload,
+      };
+      return {
+        ...state,
+        dnsInfo,
       };
     },
   },

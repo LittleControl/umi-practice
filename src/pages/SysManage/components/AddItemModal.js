@@ -21,7 +21,6 @@ const { Option } = Select;
 
 const AddItemModal = props => {
   const { type, row } = props;
-  console.log(type);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [current, setCurrent] = useState(0);
   const showModal = () => {
@@ -92,7 +91,7 @@ const AddItemModal = props => {
             编辑
           </Button>
           <Modal
-            title="VLAN 接口配置"
+            title="编辑接口"
             visible={isModalVisible}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -197,7 +196,16 @@ const AddItemModal = props => {
     }
   }
   const route_manage_onFinish = values => {
-    console.log(values);
+    const { dispatch } = props;
+    values.id = 'route' + Date.now();
+    dispatch({
+      type: 'netmanage/addRoute',
+      payload: {
+        values,
+      },
+    });
+    message.success('Processing complete!');
+    handleCancel();
   };
   if (type === 'route_manage') {
     return (
