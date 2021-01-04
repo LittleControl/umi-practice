@@ -17,19 +17,22 @@ class Header extends Component {
     return (
       <>
         <Row align="middle" style={{ height: '10vh' }}>
-          <Col span={4}>
+          <Col md={4} lg={4} xl={4} xxl={4}>
             <span style={{ fontSize: '2em' }}>WebRay</span>
           </Col>
-          <Col span={10}></Col>
-          <Col span={10}>
-            <Space
-              style={{ fontSize: '1.7em', color: '#1890ff' }}
-              size={'large'}
-            >
-              <DownSquareOutlined />
-              <span>任务创建</span>
-              <span>已完成任务/总任务: </span>
-              <span>3/10</span>
+          <Col md={0} lg={4} xl={6} xxl={10}></Col>
+          <Col
+            md={20}
+            lg={16}
+            xl={14}
+            xxl={10}
+            style={{ fontSize: '1.7em', color: '#1890ff' }}
+          >
+            <DownSquareOutlined />
+            <span>任务创建 &nbsp; &nbsp;&nbsp;</span>
+            <span>已完成任务/总任务: </span>
+            <span>{'3/10'} &nbsp; &nbsp;&nbsp;</span>
+            <Space size={'large'}>
               <Button type="primary">全部单位</Button>
               <BellOutlined />
               <CommentOutlined />
