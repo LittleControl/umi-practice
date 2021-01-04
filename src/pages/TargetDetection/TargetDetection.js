@@ -24,9 +24,9 @@ class TargetDetection extends Component {
   render() {
     return (
       <Fragment>
-        <Space direction="vertical" style={{ width: '100%' }}>
+        <Space direction="vertical" size={'large'} style={{ width: '100%' }}>
           <GenCard component={LinkMenu} />
-          <GenCard component={FilterCard} />
+          <FilterCard />
           <GenCard component={TableCard} />
         </Space>
       </Fragment>

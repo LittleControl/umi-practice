@@ -723,4 +723,41 @@ export default {
       },
     },
   },
+  'GET /api/filter/port': {
+    success: true,
+    data: {
+      table_data: [
+        {
+          id: 't1',
+          ip: '127.0.0.1',
+          port: 22,
+          service_name: 'SSH',
+          os: 'Linux',
+          equip_type: '路由设备',
+          vendor: 'Google',
+          operate: 'test1',
+        },
+        {
+          id: 't2',
+          ip: '192.168.1.1',
+          port: 22,
+          service_name: 'HTTP',
+          os: 'Windows',
+          equip_type: '云服务资源',
+          vendor: 'MicroSoft',
+          operate: 'test2',
+        },
+        {
+          id: 't3',
+          ip: '125.2.3.78',
+          port: 22,
+          service_name: 'HTTPS',
+          os: 'MacOS',
+          equip_type: '物联网设备',
+          vendor: 'Apple',
+          operate: 'test3',
+        },
+      ],
+    },
+  },
 };

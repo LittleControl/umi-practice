@@ -12,6 +12,10 @@ export async function fakeTargetDetection() {
   });
 }
 
+export async function fakeFilter(url) {
+  return await request('/api/filter/port');
+}
+
 export async function fakeNetManage() {
   return await request('/api/netmanage');
 }
