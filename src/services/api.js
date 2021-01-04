@@ -20,6 +20,14 @@ export async function fakeNetManage() {
   return await request('/api/netmanage');
 }
 
+export async function fakePocLib() {
+  return await request('/api/poclib');
+}
+
+export async function fakeBugLib() {
+  return await request('/api/buglib');
+}
+
 export async function testApi() {
   return await request('/test', {
     method: 'GET',

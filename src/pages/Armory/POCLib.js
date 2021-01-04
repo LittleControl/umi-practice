@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LinkMenu from '@/components/LinkMenu';
+import { connect } from 'umi';
 import {
   Row,
   Col,
@@ -23,58 +24,56 @@ import {
 } from '@ant-design/icons';
 import './poclib.less';
 
-const treeData = [
-  {
-    title: '网页技术',
-    key: '0-0',
-    icon: <BankOutlined />,
-    children: [
-      {
-        title: 'CMS[30]',
-        key: '0-0-0',
-        icon: <TagsOutlined />,
-      },
-      {
-        title: 'HanWeb[24]',
-        key: '0-0-1',
-        icon: <TagsOutlined />,
-      },
-      {
-        title: 'Joomla[19]',
-        key: '0-0-2',
-        icon: <TagsOutlined />,
-      },
-    ],
-  },
-];
-const listData = [
-  's_cms前台无限制注入',
-  '任意文件下载',
-  '网站路径泄漏',
-  '任意文件上传',
-  'OMO CMS 默认口令',
-  's_cms前台无限制注入',
-  '任意文件下载',
-  '网站路径泄漏',
-  '任意文件上传',
-  'OMO CMS 默认口令',
-  's_cms前台无限制注入',
-  '任意文件下载',
-  '网站路径泄漏',
-  '任意文件上传',
-  'OMO CMS 默认口令',
-  's_cms前台无限制注入',
-  '任意文件下载',
-  '网站路径泄漏',
-  '任意文件上传',
-  'OMO CMS 默认口令',
-];
+// const treeData = [
+//   {
+//     title: '网页技术',
+//     key: '0-0',
+//     icon: <BankOutlined />,
+//     children: [
+//       {
+//         title: 'CMS[30]',
+//         key: '0-0-0',
+//         icon: <TagsOutlined />,
+//       },
+//       {
+//         title: 'HanWeb[24]',
+//         key: '0-0-1',
+//         icon: <TagsOutlined />,
+//       },
+//       {
+//         title: 'Joomla[19]',
+//         key: '0-0-2',
+//         icon: <TagsOutlined />,
+//       },
+//     ],
+//   },
+// ];
 
 class POCLib extends Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    const {
+      dispatch,
+      location: { pathname },
+    } = this.props;
+    if (pathname === '/poclib') {
+      dispatch({
+        type: 'poclib/query',
+      });
+    }
+  }
   render() {
+    const { treeData, listData } = this.props.poclib;
+    for (let item in treeData) {
+      treeData[item].icon = <BankOutlined />;
+      if (treeData[item].children) {
+        for (let child in treeData[item].children) {
+          treeData[item].children[child].icon = <TagsOutlined />;
+        }
+      }
+    }
     return (
       <>
         <LinkMenu menu="POC库" />
@@ -197,4 +196,4 @@ class POCLib extends Component {
   }
 }
 
-export default POCLib;
+export default connect(poclib => poclib)(POCLib);

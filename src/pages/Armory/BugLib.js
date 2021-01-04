@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'umi';
 import LinkMenu from '@/components/LinkMenu';
 import { Card, Row, Col, Divider, Table, Input, Checkbox, Button } from 'antd';
 import { DownOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -22,12 +23,6 @@ const type_columns = [
   },
 ];
 
-const type_data = [
-  { id: 'td1', class: '云安全' },
-  { id: 'td1', class: '远程溢出' },
-  { id: 'td1', class: '移动安全' },
-  { id: 'td1', class: '网络设备安全' },
-];
 const plainOptions = ['高', '中', '低', '信息'];
 
 const name_columns = [
@@ -59,16 +54,7 @@ const name_columns = [
       }
       return obj;
     },
-    filters: [
-      {
-        text: '云安全',
-        value: 'cloud_security',
-      },
-      {
-        text: '远程溢出',
-        value: 'remote_overflow',
-      },
-    ],
+    sorter: (a, b) => a.risk_level - b.risk_level,
   },
   {
     title: '漏洞',
@@ -102,23 +88,23 @@ const name_columns = [
   },
 ];
 
-const name_data = [
-  {
-    id: 'nd1',
-    risk_level: 1,
-    bug: 'HP_UX安全修补程序_PHCO_20555',
-    bug_type: 'Unix本地安全',
-  },
-  { id: 'nd2', risk_level: 2, bug: 'XSS攻击漏洞', bug_type: 'Web漏洞' },
-  { id: 'nd3', risk_level: 3, bug: 'CSRF攻击', bug_type: 'NothingCanFounded' },
-  { id: 'nd4', risk_level: 1, bug: 'Stack Overflow', bug_type: '404' },
-];
-
 class BugLib extends Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    const {
+      dispatch,
+      location: { pathname },
+    } = this.props;
+    if (pathname === '/buglib') {
+      dispatch({
+        type: 'buglib/query',
+      });
+    }
+  }
   render() {
+    const { type_data, name_data } = this.props.buglib;
     return (
       <Fragment>
         <LinkMenu menu="漏洞库" />
@@ -138,7 +124,11 @@ class BugLib extends Component {
                 </Col>
               </Row>
               <Divider />
-              <Table columns={type_columns} dataSource={type_data} />
+              <Table
+                columns={type_columns}
+                dataSource={type_data}
+                rowKey={'id'}
+              />
             </Col>
             <Col span={12}>
               <Row gutter={(24, 24)} align="middle">
@@ -161,7 +151,11 @@ class BugLib extends Component {
                 </Col>
               </Row>
               <Divider />
-              <Table columns={name_columns} dataSource={name_data} />
+              <Table
+                columns={name_columns}
+                dataSource={name_data}
+                rowKey={'id'}
+              />
             </Col>
           </Row>
         </Card>
@@ -170,4 +164,4 @@ class BugLib extends Component {
   }
 }
 
-export default BugLib;
+export default connect(({ buglib }) => ({ buglib }))(BugLib);

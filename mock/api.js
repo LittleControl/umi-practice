@@ -760,4 +760,82 @@ export default {
       ],
     },
   },
+  'GET /api/poclib': {
+    success: true,
+    data: {
+      treeData: [
+        {
+          title: '网页技术',
+          key: '0-0',
+          // icon: <BankOutlined />,
+          children: [
+            {
+              title: 'CMS[30]',
+              key: '0-0-0',
+              // icon: <TagsOutlined />,
+            },
+            {
+              title: 'HanWeb[24]',
+              key: '0-0-1',
+              // icon: <TagsOutlined />,
+            },
+            {
+              title: 'Joomla[19]',
+              key: '0-0-2',
+              // icon: <TagsOutlined />,
+            },
+          ],
+        },
+      ],
+      listData: [
+        's_cms前台无限制注入',
+        '任意文件下载',
+        '网站路径泄漏',
+        '任意文件上传',
+        'OMO CMS 默认口令',
+        's_cms前台无限制注入',
+        '任意文件下载',
+        '网站路径泄漏',
+        '任意文件上传',
+        'OMO CMS 默认口令',
+        's_cms前台无限制注入',
+        '任意文件下载',
+        '网站路径泄漏',
+        '任意文件上传',
+        'OMO CMS 默认口令',
+        's_cms前台无限制注入',
+        '任意文件下载',
+        '网站路径泄漏',
+        '任意文件上传',
+        'OMO CMS 默认口令',
+      ],
+    },
+  },
+  'GET /api/buglib': {
+    success: true,
+    data: {
+      type_data: [
+        { id: 'td001', class: '云安全' },
+        { id: 'td002', class: '远程溢出' },
+        { id: 'td003', class: '移动安全' },
+        { id: 'td004', class: '网络设备安全' },
+      ],
+      name_data: [
+        {
+          id: 'nd1',
+          risk_level: 1,
+          bug: 'HP_UX安全修补程序_PHCO_20555',
+          bug_type: 'Unix本地安全',
+        },
+        { id: 'nd2', risk_level: 2, bug: 'XSS攻击漏洞', bug_type: 'Web漏洞' },
+        {
+          id: 'nd3',
+          risk_level: 3,
+          bug: 'CSRF攻击',
+          bug_type: 'NothingCanFounded',
+        },
+        { id: 'nd4', risk_level: 1, bug: 'Stack Overflow', bug_type: '404' },
+      ],
+    },
+  },
 };
