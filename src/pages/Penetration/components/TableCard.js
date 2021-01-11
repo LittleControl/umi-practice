@@ -28,7 +28,7 @@ const renderFun = value => {
         <List.Item>
           <Space>
             <Button type="dashed" danger>
-              高风险
+              低风险
             </Button>
             <span style={{ color: 'blue' }}>{value.text}</span>
           </Space>
