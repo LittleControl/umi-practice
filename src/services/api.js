@@ -32,6 +32,12 @@ export async function fakeExpLib() {
   return await request('/api/explib');
 }
 
+export async function fakeExpLibSearch(name) {
+  const url = `/api/explib?name=${name}`;
+  console.log(url);
+  return await request('/api/explib/search');
+}
+
 export async function testApi() {
   return await request('/test', {
     method: 'GET',

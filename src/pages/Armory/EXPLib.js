@@ -80,8 +80,26 @@ class EXPLib extends Component {
       description,
     });
   }
+  onSearchClick = value => {
+    if (value) {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'explib/search',
+        payload: {
+          name: value,
+        },
+      });
+    }
+  };
   render() {
     const { exp_data } = this.props.explib;
+    const {
+      cve_name: cve_name_init,
+      full_name: full_name_init,
+      risk_level: risk_level_init,
+      description: description_init,
+    } = exp_data[0];
+    const { cve_name, full_name, risk_level, description } = this.state;
     return (
       <>
         <LinkMenu menu={'EXP库'} />
@@ -93,16 +111,14 @@ class EXPLib extends Component {
                 placeholder="搜索名称/CVE"
                 allowClear
                 enterButton="搜索"
+                onSearch={this.onSearchClick}
               />
             </Col>
             <Col span={6}>
               <Button>作者</Button>
-              <Select defaultValue="lucy" style={{ width: '70%' }}>
+              <Select defaultValue="jack" style={{ width: '70%' }}>
                 <Option value="jack">Jack</Option>
                 <Option value="lucy">Lucy</Option>
-                <Option value="disabled" disabled>
-                  Disabled
-                </Option>
                 <Option value="Yiminghe">yiminghe</Option>
               </Select>
             </Col>
@@ -143,18 +159,29 @@ class EXPLib extends Component {
               <Divider />
               <Descriptions column={1}>
                 <Descriptions.Item label="名称">
-                  {this.state.cve_name}
+                  {cve_name ? cve_name : cve_name_init}
                 </Descriptions.Item>
                 <Descriptions.Item label="全称">
-                  {this.state.full_name}
+                  {full_name ? full_name : full_name_init}
                 </Descriptions.Item>
                 <Descriptions.Item label="风险等级">
-                  {this.state.risk_level === 1 ? (
+                  {risk_level ? (
+                    risk_level === 1 ? (
+                      <Button type="primary" danger>
+                        高危
+                      </Button>
+                    ) : risk_level === 2 ? (
+                      <Button danger>中危</Button>
+                    ) : (
+                      <Button type="dashed" danger>
+                        低危
+                      </Button>
+                    )
+                  ) : risk_level_init === 1 ? (
                     <Button type="primary" danger>
-                      {' '}
                       高危
                     </Button>
-                  ) : this.state.risk_level === 2 ? (
+                  ) : risk_level_init === 2 ? (
                     <Button danger>中危</Button>
                   ) : (
                     <Button type="dashed" danger>
@@ -163,7 +190,7 @@ class EXPLib extends Component {
                   )}
                 </Descriptions.Item>
                 <Descriptions.Item label="描述">
-                  {this.state.description}
+                  {description ? description : description_init}
                 </Descriptions.Item>
               </Descriptions>
             </Card>

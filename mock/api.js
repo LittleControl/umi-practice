@@ -907,4 +907,31 @@ export default {
       ],
     },
   },
+  'GET /api/explib/search': {
+    success: true,
+    data: {
+      exp_data: [
+        {
+          id: 'cved010',
+          risk_levelrisk_level: 1,
+          cve_name: 'Coooooooooooooooooooo!',
+          cve_id: 'CVE-2021-1092',
+          cve_author: 'Jackson',
+          cve_time: '2021-04-02',
+          full_name: '/etc/vimrc',
+          description: 'vim is really powerful!',
+        },
+        {
+          id: 'cved011',
+          risk_level: 2,
+          cve_name: 'Nooooooooooooooooooooo!',
+          cve_id: 'CVE-2022-1092',
+          cve_author: 'Mircsoft',
+          cve_time: '2022-04-09',
+          full_name: '~/.config/i3/config',
+          description: 'i3 is a likely vim window manager!',
+        },
+      ],
+    },
+  },
 };
