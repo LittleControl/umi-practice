@@ -39,6 +39,12 @@ class FilterCard extends Component {
       payload: values,
     });
   }
+  onReset() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'targetdetection/query',
+    });
+  }
   render() {
     const { Item } = Form;
     const initialValues = {
@@ -105,7 +111,7 @@ class FilterCard extends Component {
                 <Button type="primary" htmlType="submit">
                   查询
                 </Button>
-                <Button>重置</Button>
+                <Button onClick={() => this.onReset()}>重置</Button>
               </Space>
             </Col>
           </Row>
