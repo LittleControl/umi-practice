@@ -28,6 +28,10 @@ export async function fakeBugLib() {
   return await request('/api/buglib');
 }
 
+export async function fakeExpLib() {
+  return await request('/api/explib');
+}
+
 export async function testApi() {
   return await request('/test', {
     method: 'GET',
