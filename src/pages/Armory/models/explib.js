@@ -1,5 +1,4 @@
 import { fakeExpLib, fakeExplibSearch } from '@/services/api';
-import { fakeExpLibSearch } from '../../../services/api';
 
 export default {
   namespace: 'explib',
@@ -18,7 +17,7 @@ export default {
     ],
   },
   effects: {
-    *query({ callback }, { call, put }) {
+    *query({}, { call, put }) {
       const {
         data: { exp_data },
       } = yield call(fakeExpLib);
@@ -28,9 +27,6 @@ export default {
           exp_data,
         },
       });
-      if (exp_data.length > 0) {
-        callback && callback(exp_data[0]);
-      }
     },
     *search({ payload }, { call, put }) {
       const { name } = payload;
